@@ -1,0 +1,125 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}
+Dashboard | SimplyNote
+{% endblock title %}
+
+{% block Style %}
+<style>
+    /* Add border styles for form fields */
+    input[type="text"],
+    input[type="textarea"] {
+        border: 1px solid #ced4da; /* Border color */
+        border-radius: 0.25rem; /* Border radius */
+        padding: 0.375rem 0.75rem; /* Padding */
+        width: 100%; /* Full width */
+    }
+
+    /* Add focus styles for form fields */
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus {
+        border-color: #80bdff; /* Border color on focus */
+        outline: 0; /* Remove outline */
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Add shadow on focus */
+    }
+</style>
+{% endblock Style %}
+
+{% block content %}
+<nav class="bg-gray-200 shadow shadow-gray-300">
+    <div class="container mx-auto px-8 md:px-4 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="text-indigo-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            </svg>
+        </a>
+
+        <div class="flex gap-3">
+            <a href="" class="px-4 py-2 border border-blue-600 rounded-xl">Profile</a>
+            <a href="/logout/" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mx-auto py-8 flex flex-col items-center justify-center">
+
+    <img src='/notes/welcome_back.gif' alt="Welcome" width="380px" class="mb-4">
+    <h2 class="text-3xl font-semibold mb-4 bg-gray-300 w-full text-center p-2">Welcome, {{ user.username }}!</h2>
+
+    {% if user_type %}
+        {% if user_type.user_type == 'teacher' %}
+            <div class="overflow-x-auto text-center mb-8">
+                <h3 class="text-2xl font-semibold mb-2">Uploaded Notes</h3>
+                <table class="table-auto w-full">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 bg-blue-200">Title</th>
+                            <th class="px-4 py-2 bg-blue-200">Category</th>
+                            <!-- Add more table headers as needed -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for note in notes %}
+                            <tr>
+                                <td class="px-4 py-2">{{ note.title }}</td>
+                                <td class="px-4 py-2">{{ note.category }}</td>
+                                <!-- Display other note details as needed -->
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="overflow-x-auto text-center mb-8 border rounded-xl p-10">
+                <h3 class="text-2xl font-semibold mt-8 mb-2">Upload Note:</h3>
+                <form method="post" enctype="multipart/form-data" class="max-w-lg mx-auto">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
+                        <input type="text" id="title" name="title" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
+                        <input type="text" id="category" name="category" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+                        <textarea id="description" name="description" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="file" class="block text-gray-700 text-sm font-bold mb-2">Upload File:</label>
+                        <input type="file" id="file" name="file" accept=".pdf,.doc,.docx" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Upload</button>
+                </form>
+            </div>
+        {% else %}
+        <div class="container mx-auto py-8 flex flex-col items-center justify-center">
+            <h3 class="text-2xl font-semibold mb-4">Available Notes:</h3>
+
+            <div class=" w-full flex items-center justify-center">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {% for note in notes %}
+                    <div class="bg-white shadow-md rounded-md p-4">
+                        <h4 class="text-lg font-semibold mb-2">{{ note.title }}</h4>
+                        <p class="text-sm text-gray-600 mb-4">{{ note.description }}</p>
+                        <div class="flex justify-end">
+                            <a href="{{ note.file.url }}" class="text-blue-500 hover:underline">Download</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>        
+        {% endif %}
+    {% else %}
+        <p class="text-xl">No user type information available.</p>
+    {% endif %}
+</div>
+{% endblock content %}
