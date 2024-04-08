@@ -32,7 +32,8 @@ Dashboard | SimplyNote
         <!-- Logo -->
 
 
-        <a href="/" class="text-indigo-500  flex items-center justify-center gap-2">
+
+        <a href="/" class="text-orange-500  flex items-center justify-center gap-2">
             <!-- Heroicon - Chip Outline -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -46,7 +47,7 @@ Dashboard | SimplyNote
 
             <div class="flex gap-2 items-center justify-center">
                 <div>
-                    <span class=" p-2 rounded-[50%] bg-blue-500 text-[14px] font-bold">{{ user.username | first | upper }}</span>
+                    <span class=" p-2 rounded-[50%] bg-orange-500 text-[14px] font-bold">{{ user.username | first | upper }}</span>
                  </div>
                  <div>
                       <h1 class=" font-bold">{{ user.username }}</h1>
@@ -54,7 +55,7 @@ Dashboard | SimplyNote
             </div>
 
 
-            <a href="/logout/" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+            <a href="/logout/" class="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-gray-50 rounded-xl flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
@@ -76,8 +77,8 @@ Dashboard | SimplyNote
                 <table class="table-auto w-full">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 bg-blue-200">Title</th>
-                            <th class="px-4 py-2 bg-blue-200">Category</th>
+                            <th class="px-4 py-2 bg-orange-200">Title</th>
+                            <th class="px-4 py-2 bg-orange-200">Category</th>
                             <!-- Add more table headers as needed -->
                         </tr>
                     </thead>
@@ -112,7 +113,7 @@ Dashboard | SimplyNote
                         <label for="file" class="block text-gray-700 text-sm font-bold mb-2">Upload File:</label>
                         <input type="file" id="file" name="file" accept=".pdf,.doc,.docx" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Upload</button>
+                    <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Upload</button>
                 </form>
             </div>
         {% else %}
@@ -126,7 +127,7 @@ Dashboard | SimplyNote
                         <h4 class="text-lg font-semibold mb-2">{{ note.title }}</h4>
                         <p class="text-sm text-gray-600 mb-4">{{ note.description }}</p>
                         <div class="flex justify-end items-center">
-                            <a href="{{ note.file.url }}" class=" bg-blue-500 p-2  rounded-md text-white">Download</a>
+                            <a href="{{ note.file.url }}" class=" bg-orange-500 p-2  rounded-md text-white">Download</a>
                         </div>
                     </div>
                     {% endfor %}
