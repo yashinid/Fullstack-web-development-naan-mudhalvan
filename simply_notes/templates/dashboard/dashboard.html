@@ -106,11 +106,11 @@ Dashboard | SimplyNote
             <div class=" w-full flex items-center justify-center">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {% for note in notes %}
-                    <div class="bg-white shadow-md rounded-md p-4">
+                    <div class="bg-white shadow-md rounded-md p-4 flex flex-col items-center justify-center">
                         <h4 class="text-lg font-semibold mb-2">{{ note.title }}</h4>
                         <p class="text-sm text-gray-600 mb-4">{{ note.description }}</p>
-                        <div class="flex justify-end">
-                            <a href="{{ note.file.url }}" class="text-blue-500 hover:underline">Download</a>
+                        <div class="flex justify-end items-center">
+                            <a href="{{ note.file.url }}" class=" bg-blue-500 p-2  rounded-md text-white">Download</a>
                         </div>
                     </div>
                     {% endfor %}
