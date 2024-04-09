@@ -1,7 +1,7 @@
 {% extends 'layout/layout.html' %}
 
 {% block title %}
-Login | SimplyNote
+Login | Custom Notes
 {% endblock title %}
 
 {% block Style %}
@@ -40,7 +40,7 @@ Login | SimplyNote
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
             </svg>
-            <h1 class="text-xl font-semibold">SimplyNote</h1>
+            <h1 class="text-xl font-semibold">Custom Notes</h1>
         </a>
 
         <div class="order-2 flex gap-3 md:order-3">
@@ -68,7 +68,7 @@ Login | SimplyNote
                     {{ field }}
                 </div>
             {% endfor %}
-            <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded w-full">Login</button>
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded w-full">Login</button>
         </form>
     </div>
 </div>
